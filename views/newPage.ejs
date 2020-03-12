@@ -1,0 +1,229 @@
+ 
+
+<html>
+    <head>
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+            <title>Login Page</title>
+            <!--Made with love by Mutiullah Samim -->
+            
+             <!--Bootsrap 4 CDN-->
+             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+             
+             <!--Fontawesome CDN-->
+             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+         
+             <!--Custom styles-->
+             <link rel="stylesheet" type="text/css" href="homestyles.css">
+            <style>
+                    table, th, td {
+                      border: 1px solid black;
+                      border-collapse: collapse;
+                    }
+            </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="newPage.js"></script> -->
+
+    <script>
+    var foodArray = [ 
+        {name:"milk",price:3.50},
+        {name:"meat",price:5.00},
+        {name:"veggies",price:7.00},
+        {name:"eggs",price:2.00},
+        {name:"fruit",price:7.00},
+        {name:"cereal",price: 3.00},
+        {name:"bread",price:2.58},
+        {name:"juice",price:3.00},
+        {name:"extra",price:10.00}];
+    function addFood(){
+        addfoodinp= document.getElementById("addfood").value;
+        foodArray.push(addfoodinp);
+        console.log(addfoodinp);
+        $("#row1").append(
+                "<button onclick= start('" + foodArray[foodArray.length-1] + "') id='" + foodArray[foodArray.length-1] + "' type='button' class='btn btn-default col-md-3'>" + foodArray[foodArray.length-1] + "</button>"
+            );
+        // buildButtons();
+       
+    }
+    function addPrice(){
+        
+    }
+
+    function buildButtons() { 
+
+        for(var i=0; i < foodArray.length; i++) {
+            $("#row1").append(
+                "<button onclick= start('" + foodArray[i] + "') id='" + foodArray[i] + "' type='button' class='btn btn-default col-md-3'>" + foodArray[i] + "</button>"
+            );
+
+        }
+        
+
+
+    }
+
+
+     var total = 0;
+    
+     function start(id){
+        displayCart(id);
+        moneyleft(id);
+        //buildButtons();
+        // console.log(moneyspent);
+    }
+
+    function displayPrice(){
+           document.getElementById("initialamount").innerHTML= "$"+document.getElementById("amountinput").value;
+        }
+  
+    function assignPrice(id){
+        var foodname =id;
+        if(foodname=="milk"){
+           return 3.50;
+        }
+        if(foodname=="meat"){
+            return 5.00;
+        }
+        if(foodname=="veggies"){
+            return 7.00;
+        }
+        if(foodname=="eggs"){
+            return 2.00;
+        }
+        if(foodname=="fruit"){
+            return 7.00;
+        }
+        if(foodname=="cereal"){
+            return 3.00;
+        }
+        if(foodname=="bread"){
+            return 2.58;
+        }
+        if(foodname=="juice"){
+            return 3.00;
+        }
+        if(foodname=="extra"){
+            return 10.00;
+        }
+        
+    }    
+        
+    function displayCart(id){
+        var price= assignPrice(id);
+        document.getElementById("cart").innerHTML= "Item:"+ id+ "  Price:$"+ price;
+        total += price
+        // console.log(total += price);
+    }
+
+    function moneyleft(id){
+        document.getElementById("amountleft").innerHTML= (document.getElementById("amountinput").value-(total));
+         
+    }
+        </script>
+       
+    </head>
+
+    <body onload="buildButtons()">
+            
+        
+Age: <%= sendToPage.age  %> 
+<br>
+Password: <%= sendToPage.password  %> 
+<br>
+Username: <%= sendToPage.userName  %>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<input id="amountinput">
+<button onclick= displayPrice()>enter</button>
+<div id="initialamount">money amount goes here</div>
+<div id="cart">This is your cart</div>
+<div id="amountleft">this is how much money you have left to spend</div>
+<div class="container-fluid">            
+  <div class="row">          
+    <div id="row1" class="btn-group">
+
+Add food <input id="addfood"> 
+<button onclick=addFood() id="addfoodbtn"></button> 
+<br>
+Add a Price <input id="addprice"> 
+<button onclick=addPrice() id="addpricebtn"></button> 
+<br>
+
+    
+  
+
+
+
+   
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Food</h3>
+                
+            </div>
+            <div class="card-body">
+                <form action="createfood" method="post">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-font"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="food name" name="foodname">
+                        
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lemon"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="food type" name="type">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" class="form-control" placeholder="date purchased" name="date">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                        </div>
+                        <input type="date" class="form-control" placeholder="expiration date" name="expiration">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="restrictions" name="restrictions">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn float-right login_btn">
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>        -->
